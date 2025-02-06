@@ -1,9 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
-import data from './data.json'
+import dataBase from './data.json'
 
-const dataBase = ref(data)
-// console.log(dataBase[2].author.name)
 const displayMessage = ref(true)
 const displayElement = ref(false)
 
@@ -24,6 +22,8 @@ const averageRate = computed(() => {
   return total / numOfrates
   // dataBase[index].rates.length
 })
+
+console.log(selection.value)
 </script>
 
 <template>
@@ -39,7 +39,7 @@ const averageRate = computed(() => {
     <h2>{{ selection.title }}</h2>
     <p>{{ selection.synopsis }}</p>
     <p>{{ selection.content }}</p>
-    <!-- <p v-if="(selection.category === 'article') & selection.author">{{ selection.author.name }}</p> -->
+    <p v-if="selection.category === 'article' && selection.author">{{ selection.author.name }}</p>
     <p v-if="selection.category === 'livre'">{{ selection.author }}</p>
     <!-- <p v-else>{{ selection.author }}</p> -->
     <p>Pas encore de like {{ selection.rates }}</p>
